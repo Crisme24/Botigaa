@@ -34,16 +34,19 @@ Route::prefix('v1')->group(function () {
         'middleware'=>'auth:api'
     ],function(){
         Route::get('','CategoryController@getAll');
+       Route::middleware('checkRole:admin|superAdmin')->group(function(){
         Route::post('','CategoryController@insert');
         Route::put('{id}','CategoryController@update');
         Route::delete('{id}','CategoryController@delete');
+       });
     });
     Route::group([
-        'prefix' => 'products',
-        'middleware'=>'auth:api'
+        'prefix' => 'products'
     ], function () {
         Route::get('','ProductController@getAll');
-        Route::post('', 'ProductController@insert');
+        Route::middleware(['auth:api','checkRole:admin|superAdmin'])->group(function(){
+            Route::post('', 'ProductController@insert');
+        });
     });
     Route::group([
         'prefix' => 'orders',
