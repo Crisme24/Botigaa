@@ -45,7 +45,11 @@ Route::prefix('v1')->group(function () {
     ], function () {
         Route::get('','ProductController@getAll');
         Route::middleware(['auth:api','checkRole:admin|superAdmin'])->group(function(){
+            Route::get('restore/{id}','ProductController@restore');
             Route::post('', 'ProductController@insert');
+            Route::post('/image/{id}','ProductController@uploadImage');
+            Route::put('{id}', 'ProductController@update');
+            Route::delete('{id}', 'ProductController@delete');
         });
     });
     Route::group([
