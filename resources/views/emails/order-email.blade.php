@@ -113,7 +113,6 @@
     </div>
     <div class="headers" style="display: flex;">
         <div class="cliente">
-            <b> Botigaa</b>
             <b>Botigaa S. A.</b>
 
             <span>
@@ -159,7 +158,7 @@
     </div>
     <div class="cuerpo">
         @foreach ($order->products as $product)
-        <div class="producto" style="display: flex;">
+        <div class="producto" style="display: flex; justify-content:space-between">
             <div class="cod_prod">{{$product->id}}</div>
             <div class="nombre">{{$product->name}}</div>
             <div class="formato">{{$product->description}}</div>

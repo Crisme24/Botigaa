@@ -23,6 +23,19 @@ class ProductController extends Controller
         }
     }
 
+    public function getOne($id)
+    {
+        try {
+            $product = Product::find($id);
+            return response($product);
+        } catch (\Exception $e) {
+            return response([
+                'error' => $e
+            ], 500);
+        }
+
+    }
+
     public function insert(Request $request)
     {
         try {
